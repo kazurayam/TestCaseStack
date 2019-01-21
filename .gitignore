@@ -1,0 +1,18 @@
+# emacs
+*~
+
+# vim
+.swp
+
+## proposed by https://github.com/katalon-studio/ShadowDOMSampleProject/blob/master/.gitignore#L3
+/\.classpath
+/\.project
+/\.settings/
+/bin/lib/
+/Libs/
+
+## I do not want Report to be published
+/Reports/
+/Materials/
+/tmp/
+/bin/
