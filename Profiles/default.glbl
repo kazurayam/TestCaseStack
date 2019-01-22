@@ -7,7 +7,7 @@
    <GlobalVariableEntity>
       <description></description>
       <initValue>null</initValue>
-      <name>TESTCASES_STACK</name>
+      <name>TESTCASE_STACK</name>
    </GlobalVariableEntity>
    <GlobalVariableEntity>
       <description></description>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Project>
-   <description></description>
-   <name>TracingTestCasesStack</name>
+   <description>How to build a stack of Test Case caller-callee chainge, how to trace it.</description>
+   <name>TestCaseStack</name>
    <tag></tag>
    <UUID>550a0c9a-24e9-4b39-8847-39b94063904d</UUID>
    <migratedVersion>5.9.0</migratedVersion>
