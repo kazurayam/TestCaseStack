@@ -28,14 +28,25 @@ That's fine. But we want to know more. Here we assume we have a chain like
 1. Test Suite `TS1` invokes a Test Case `Root`.
 2. `Root` calls another Test Case `Level1`, which calls `Level2`, which calls `Level3`  with the built-in keyword `WebUI.callTestCase()`
 
-Question:
-**How the test case code of `Level1` can know the TestCaseId of itself to be `Test Cases/Level1`?**
+I ran the "Test Cases/Root" and looked at the log to find the following result.
 
-Question:
-**How the test case code of `Level2` can know the TestCaseId of itself to be `Test Cases/Level2`?**
+![log](docs/images/log.png)
 
-Question:
-**How the test case code of `Level3` can know the TestCaseId of itself to be `Test Cases/Level3`?**
+Please find that the value of `GlobalVariable.CURRENT_TESTCASE_ID` stayed the same `"Test Cases/Root"` inside Level1, Level2 and Level3. This experiment shows a fact that **Katalon Studio does NOT invoke the `@beforeTestCase`-annotated method in a TestListener when the `callTestCase()` keyword is called by a parent TestCase**. This behavior was surprising for me. But this is given. I would accept it.
+
+However, in some situation due to some reason, I would like to know more:
+
+1. How the code of `"Test Cases/Level1"` can find the name of itself is `"Test Cases/Level1"` ?
+
+2. How the code of `"Test Cases/Level2"` can find the name of itself is `"Test Cases/Level2"` ?
+
+3. How the code of `"Test Cases/Level3"` can find the name of itself is `"Test Cases/Level3"` ?
+
+4. How the code of `"Test Cases/Level1"` can find the name of parent: `Test Cases/Root` ?
+
+5. How the code of `"Test Cases/Level2"` can find the name of parent: `Test Cases/Level1` ?
+
+6. How the code of `"Test Cases/Level3"` can find the name of parent: `Test Cases/Level2` ?
 
 ## Solution
 
@@ -61,19 +72,18 @@ a running example by changing the implementation runtime using Groovy's metaprog
 ```
 ----------------------------------------------------
 top-level TestCaseId : Test Cases/Root
-callee TestCaseId    : empty
-
 ----------------------------------------------------
 top-level TestCaseId : Test Cases/Root
 callee TestCaseId    : Test Cases/Level1
-
+parent caller was    : Test Cases/Root
 ----------------------------------------------------
 top-level TestCaseId : Test Cases/Root
 callee TestCaseId    : Test Cases/Level2
-
+parent caller was    : Test Cases/Level1
 ----------------------------------------------------
 top-level TestCaseId : Test Cases/Root
 callee TestCaseId    : Test Cases/Level3
+parent caller was    : Test Cases/Level2
 
 ```
 
@@ -118,6 +128,6 @@ def beforeTestCase(TestCaseContext testCaseContext) {
 }
 ```
 
-Here I used Groovy's metaprogromming feature. See [ExpandoMetaClass](http://groovy-lang.org/metaprogramming.html#metaprogramming_emc) for technical detail. I would not talk about it here.
+Here I used Groovy's metaprogramming feature. See [ExpandoMetaClass](http://groovy-lang.org/metaprogramming.html#metaprogramming_emc) for technical detail. I would not talk about it here.
 
 Please note that the `GlobalVariable.TESTCASE_STACK` must be declared with type `Null` in order to initialize it with a Stack object.
