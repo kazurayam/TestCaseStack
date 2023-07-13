@@ -1,0 +1,15 @@
+{
+  "keywordFileContentHash": "3D4F6EF080894546A4B03391AD929570",
+  "keywordClasses": [
+    {
+      "name": "my.TestCaseIdPrinter",
+      "keywordMethods": [
+        {
+          "name": "print",
+          "parameters": []
+        }
+      ]
+    }
+  ],
+  "javadocParsed": false
+}
