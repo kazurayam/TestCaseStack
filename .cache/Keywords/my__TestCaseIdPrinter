@@ -1,0 +1,16 @@
+{
+  "keywordFileContentHash": "9D99117B334D34BF21CA8D1C87A665BB",
+  "keywordClasses": [
+    {
+      "name": "my.TestCaseIdPrinter",
+      "keywordMethods": [
+        {
+          "name": "print",
+          "parameters": [],
+          "javadoc": ""
+        }
+      ]
+    }
+  ],
+  "javadocParsed": true
+}

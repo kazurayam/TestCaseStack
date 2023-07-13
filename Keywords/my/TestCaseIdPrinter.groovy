@@ -11,10 +11,17 @@ public class TestCaseIdPrinter {
 		println "top-level TestCaseId : ${GlobalVariable.CURRENT_TESTCASE_ID}"
 		//
 		Stack<String> tcStack = (Stack<String>)GlobalVariable.TESTCASE_STACK
-		String peek = "empty"
 		if (!tcStack.empty()) {
-			peek = tcStack.peek()
+			println "callee TestCaseId    : ${tcStack.peek()}"
+			if (tcStack.size() == 1) {
+				println "parent caller was    : ${GlobalVariable.CURRENT_TESTCASE_ID}"
+			} else {
+				String popped = tcStack.pop()
+				println "parent caller was    : ${tcStack.peek()}"
+				tcStack.push(popped)   // push the peek back
+			}
+
 		}
-		println "callee TestCaseId    : ${peek}"
+
 	}
 }
