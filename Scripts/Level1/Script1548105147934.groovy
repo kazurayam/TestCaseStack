@@ -5,4 +5,5 @@ import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUI
 
 println '----------------------------------------------------'
 CustomKeywords.'my.TestCaseIdPrinter.print'()
-WebUI.callTestCase(findTestCase('Level2'),[:],FailureHandling.OPTIONAL)
+def l2 = WebUI.callTestCase(findTestCase('Level2'),[:],FailureHandling.OPTIONAL)
+return [ "Level1result": l2 ]
